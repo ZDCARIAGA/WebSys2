@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2026 at 03:30 PM
+-- Generation Time: Oct 10, 2026 at 04:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,22 +32,24 @@ CREATE TABLE `tasks` (
   `title` varchar(150) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'pending',
   `task_date` date NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `is_archived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `created_at`) VALUES
-(1, 'Review Web System Technologies notes', 'pending', '2026-10-10', '2026-10-10 21:00:38'),
-(2, 'Complete CodeIgniter database setup', 'completed', '2026-10-10', '2026-10-10 21:00:38'),
-(3, 'Create TaskModel and UserModel', 'pending', '2026-10-10', '2026-10-10 21:00:38'),
-(4, 'Build Tasks for Today dashboard', 'pending', '2026-10-10', '2026-10-10 21:00:38'),
-(5, 'Prepare project documentation', 'pending', '2026-10-11', '2026-10-10 21:00:38'),
-(6, 'Test all application pages', 'pending', '2026-10-11', '2026-10-10 21:00:38'),
-(7, 'Review previous laboratory activities', 'completed', '2026-10-09', '2026-10-10 21:00:38'),
-(8, 'Organize project files', 'completed', '2026-10-09', '2026-10-10 21:00:38');
+INSERT INTO `tasks` (`id`, `title`, `status`, `task_date`, `created_at`, `is_archived`) VALUES
+(1, 'Review Web System Technologies notes', 'pending', '2026-10-10', '2026-10-10 21:00:38', 1),
+(2, 'Complete CodeIgniter database setup', 'completed', '2026-10-10', '2026-10-10 21:00:38', 1),
+(3, 'Create TaskModel and UserModel', 'pending', '2026-10-10', '2026-10-10 21:00:38', 1),
+(4, 'Build Tasks for Today dashboard', 'pending', '2026-10-10', '2026-10-10 21:00:38', 1),
+(5, 'Prepare project documentation', 'pending', '2026-10-11', '2026-10-10 21:00:38', 0),
+(6, 'Test all application pages', 'pending', '2026-10-11', '2026-10-10 21:00:38', 0),
+(7, 'Review previous laboratory activities', 'pending', '2026-10-09', '2026-10-10 21:00:38', 1),
+(8, 'Organize project files', 'pending', '2026-10-09', '2026-10-10 21:00:38', 1),
+(9, 'Eat', 'pending', '2026-10-10', '2026-10-10 22:11:51', 0);
 
 -- --------------------------------------------------------
 
@@ -60,15 +62,16 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `created_at`) VALUES
-(1, 'demo_user', 'Demo Student', 'demo@example.com', '2026-10-10 21:00:38');
+INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `created_at`, `password`) VALUES
+(1, 'demo_user', 'Demo Student', 'demo@example.com', '2026-10-10 21:00:38', '$2y$10$4sczZes9V7lAdtr3pNyIheBnFrO3ljqvBfZvr6sx8.5uFXoFUdbJm');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +98,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
